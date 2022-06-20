@@ -13,7 +13,7 @@
     </v-row>
     <v-row no-gutters align="start" class="template-body overflow-y-auto">
       <v-container>
-        <v-col cols="8" class="offset-2">
+        <v-col>
           <slot name="body"></slot>
         </v-col>
       </v-container>

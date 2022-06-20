@@ -34,7 +34,7 @@ export const books = {
             return state.books.map((book: BookI) => ({
                     cover: book.image,
                     title: book.title,
-                    author: book.author,
+                    authors: book.authors,
                 })
             )
         }

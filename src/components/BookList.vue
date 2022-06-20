@@ -6,16 +6,23 @@
           size="64"
       ></v-progress-circular>
     </v-overlay>
-    <span>{{ this.bookList }}</span>
+    <h1 v-if="bookList.length > 0">Find something for you !</h1>
+    <div class="d-flex justify-space-between align-start flex-wrap">
+      <BookListBox v-for="(book, index) in this.bookList" :data="book" :key="`box-${index}`"/>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import {mapActions, mapGetters, mapState} from "vuex";
+import BookListBox from "@/components/BookListBox.vue";
 
 export default Vue.extend({
   name: "BookList",
+  components: {
+    BookListBox
+  },
   methods: {
     ...mapActions({getBooks: "books/getBooks"})
   },

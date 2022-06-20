@@ -9,5 +9,5 @@ export interface BookI {
 export interface BookListI {
     cover: string
     title: string
-    author: string
+    authors: string
 }
