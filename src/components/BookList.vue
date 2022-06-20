@@ -27,11 +27,13 @@ export default Vue.extend({
     ...mapActions({getBooks: "books/getBooks"})
   },
   computed: {
-    ...mapState('books', ['loading']),
+    ...mapState('books', ['loading', 'books']),
     ...mapGetters('books', ['bookList'])
   },
   created() {
-    this.getBooks()
+    if (this.books.length === 0) {
+      this.getBooks()
+    }
   }
 })
 </script>

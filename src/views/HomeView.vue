@@ -1,7 +1,7 @@
 <template>
   <DefaultLayout>
     <template v-slot:header-right>
-      <router-link to="/cart">
+      <router-link to="/cart" class="text-decoration-none">
         <v-badge
             :content="getCartItemsCount"
             :value="getCartItemsCount"
