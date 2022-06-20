@@ -35,6 +35,7 @@ export const books = {
                     cover: book.image,
                     title: book.title,
                     authors: book.authors,
+                    id: book.isbn13
                 })
             )
         }

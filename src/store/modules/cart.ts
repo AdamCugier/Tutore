@@ -1,7 +1,19 @@
+import {CartStateI} from "@/types/cart";
+
 export const cart = {
     namespaced: true,
-    state: () => ({}),
-    mutations: {},
+    state: (): CartStateI => ({
+        cart: []
+    }),
+    mutations: {
+        addToCart(state: CartStateI, payload: string) {
+            state.cart.push(payload)
+        }
+    },
     actions: {},
-    getters:{}
+    getters: {
+        getCartItemsCount(state: CartStateI) {
+            return state.cart.length
+        }
+    }
 }

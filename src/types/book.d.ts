@@ -10,4 +10,5 @@ export interface BookListI {
     cover: string
     title: string
     authors: string
+    id: string
 }

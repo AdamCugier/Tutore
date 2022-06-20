@@ -8,7 +8,7 @@
     </v-overlay>
     <h1 v-if="bookList.length > 0">Find something for you !</h1>
     <div class="d-flex justify-space-between align-start flex-wrap">
-      <BookListBox v-for="(book, index) in this.bookList" :data="book" :key="`box-${index}`"/>
+      <BookListBox v-for="(book, index) in bookList" :data="book" :key="`box-${index}`"/>
     </div>
   </div>
 </template>

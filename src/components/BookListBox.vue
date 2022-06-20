@@ -1,17 +1,18 @@
 <template>
   <v-card elevation="2" class="card-box ma-4 pa-3 align-self-stretch d-flex flex-column justify-start align-center">
     <v-img
-        :src="this.$props.data.cover"
+        :src="$props.data.cover"
     ></v-img>
     <v-card-title>
-      {{ this.$props.data.title }}
+      {{ $props.data.title }}
     </v-card-title>
     <v-card-subtitle>
-      {{ this.$props.data.authors }}
+      {{ $props.data.authors }}
     </v-card-subtitle>
     <v-card-actions class="d-flex justify-center align-end">
       <v-btn
           color="blue darken-3 white--text"
+          @click="addToCart($props.data.id)"
       >
         ADD TO CART
       </v-btn>
@@ -22,6 +23,7 @@
 <script lang="ts">
 import Vue, {PropType} from "vue";
 import {BookListI} from "@/types/book";
+import {mapMutations} from "vuex";
 
 export default Vue.extend({
   name: "BookListBox",
@@ -30,6 +32,9 @@ export default Vue.extend({
       required: true,
       type: Object as PropType<BookListI>
     }
+  },
+  methods: {
+    ...mapMutations({addToCart: "cart/addToCart"})
   }
 })
 </script>
