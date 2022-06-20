@@ -13,7 +13,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/cart',
-    name: 'home',
+    name: 'cart',
     component: CartView
   },
 ]

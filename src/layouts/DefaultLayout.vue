@@ -2,10 +2,14 @@
   <v-main class="fill-height">
     <v-row no-gutters class="py-0 px-10 template-header blue darken-4">
       <v-col cols="12" class="d-flex justify-space-between align-center">
-        <div class="d-flex align-center">
-          <v-icon large color="white">fa fa-book</v-icon>
-          <span class="ml-4 headline white--text text-uppercase font-weight-bold d-none d-sm-inline">{{ title }}</span>
-        </div>
+        <router-link to="/" class="text-decoration-none">
+          <div class="d-flex align-center logo">
+            <v-icon large color="white">fa fa-book</v-icon>
+            <span class="ml-4 headline white--text text-uppercase font-weight-bold d-none d-sm-inline">{{
+                title
+              }}</span>
+          </div>
+        </router-link>
         <div>
           <slot name="header-right"></slot>
         </div>
@@ -48,6 +52,10 @@ export default Vue.extend({
 .template- {
   &header {
     height: 70px;
+
+    .logo {
+      cursor: pointer;
+    }
   }
 
   &body {

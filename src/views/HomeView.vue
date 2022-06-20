@@ -1,19 +1,21 @@
 <template>
   <DefaultLayout>
     <template v-slot:header-right>
-      <v-badge
-          :content="getCartItemsCount"
-          :value="getCartItemsCount"
-          color="red"
-          overlap
-      >
-        <v-btn
-            dark
-            color="white">
-          <span class="text--primary mr-2">CART</span>
-          <v-icon small color="secondary">fa fa-cart-shopping</v-icon>
-        </v-btn>
-      </v-badge>
+      <router-link to="/cart">
+        <v-badge
+            :content="getCartItemsCount"
+            :value="getCartItemsCount"
+            color="red"
+            overlap
+        >
+          <v-btn
+              dark
+              color="white">
+            <span class="text--primary mr-2">CART</span>
+            <v-icon small color="secondary">fa fa-cart-shopping</v-icon>
+          </v-btn>
+        </v-badge>
+      </router-link>
     </template>
     <template v-slot:body>
       <BookList/>
