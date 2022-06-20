@@ -11,6 +11,14 @@
     </v-card-subtitle>
     <v-card-actions class="d-flex justify-center align-end">
       <v-btn
+          v-if="isInCart"
+          color="red darken-3 white--text"
+          @click="removeFromCart($props.data.id)"
+      >
+        REMOVE FROM CART
+      </v-btn>
+      <v-btn
+          v-else
           color="blue darken-3 white--text"
           @click="addToCart($props.data.id)"
       >
@@ -23,7 +31,7 @@
 <script lang="ts">
 import Vue, {PropType} from "vue";
 import {BookListI} from "@/types/book";
-import {mapMutations} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default Vue.extend({
   name: "BookListBox",
@@ -34,7 +42,16 @@ export default Vue.extend({
     }
   },
   methods: {
-    ...mapMutations({addToCart: "cart/addToCart"})
+    ...mapMutations({
+      addToCart: "cart/addToCart",
+      removeFromCart: "cart/removeFromCart"
+    })
+  },
+  computed: {
+    ...mapState('cart', ["cart"]),
+    isInCart() {
+      return this.cart.some((item: string) => item === this.$props.data.id)
+    }
   }
 })
 </script>

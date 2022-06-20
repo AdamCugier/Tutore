@@ -8,6 +8,9 @@ export const cart = {
     mutations: {
         addToCart(state: CartStateI, payload: string) {
             state.cart.push(payload)
+        },
+        removeFromCart(state: CartStateI, payload: string) {
+            state.cart = state.cart.filter(item => item !== payload)
         }
     },
     actions: {},
