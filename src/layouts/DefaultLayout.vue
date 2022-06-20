@@ -1,5 +1,5 @@
 <template>
-  <v-content class="fill-height">
+  <v-main class="fill-height">
     <v-row no-gutters class="py-0 px-10 template-header blue darken-4">
       <v-col cols="12" class="d-flex justify-space-between align-center">
         <div class="d-flex align-center">
@@ -23,7 +23,7 @@
         <span class="grey--text text--lighten-1">{{ author }}</span>
       </v-col>
     </v-row>
-  </v-content>
+  </v-main>
 </template>
 
 <script lang="ts">

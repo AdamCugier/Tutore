@@ -1,8 +1,7 @@
 <template>
-  <v-card elevation="2" class="card-box ma-4 pa-3">
+  <v-card elevation="2" class="card-box ma-4 pa-3 align-self-stretch d-flex flex-column justify-start align-center">
     <v-img
         :src="this.$props.data.cover"
-        height="200px"
     ></v-img>
     <v-card-title>
       {{ this.$props.data.title }}
@@ -10,7 +9,7 @@
     <v-card-subtitle>
       {{ this.$props.data.authors }}
     </v-card-subtitle>
-    <v-card-actions class="d-flex justify-center align-end fill-height">
+    <v-card-actions class="d-flex justify-center align-end">
       <v-btn
           color="blue darken-3 white--text"
       >
