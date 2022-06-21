@@ -8,17 +8,18 @@
             color="red"
             overlap
         >
-        <v-btn
-            dark
-            color="white">
-          <span class="text--primary mr-2">BACK TO CART</span>
-          <v-icon small color="secondary">fa fa-cart-shopping</v-icon>
-        </v-btn>
+          <v-btn
+              dark
+              color="white">
+            <span class="text--primary mr-2">BACK TO CART</span>
+            <v-icon small color="secondary">fa fa-cart-shopping</v-icon>
+          </v-btn>
         </v-badge>
       </router-link>
     </template>
     <template v-slot:body>
-      SUMMARY {{computeValue}}
+      <h1>Form to place the order</h1>
+      <FormToPlaceOrder :amount="computeValue"/>
     </template>
   </DefaultLayout>
 </template>
@@ -28,10 +29,11 @@ import Vue from 'vue'
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import {mapGetters, mapState} from "vuex";
 import {BookI} from "@/types/book";
+import FormToPlaceOrder from "@/components/Form.vue";
 
 export default Vue.extend({
   name: 'CartSummaryView',
-  components: {DefaultLayout},
+  components: {FormToPlaceOrder, DefaultLayout},
   computed: {
     ...mapGetters('cart', ["getCartItemsCount"]),
     ...mapState('cart', ["cart"]),
@@ -40,8 +42,11 @@ export default Vue.extend({
       return this.cart.map((id: string) => this.books.find((book: BookI) => book.isbn13 === id))
     },
     computeValue(): number {
-      const prices: number[] =this.selectedBooks.map((book: BookI) => Number(book.price.substring(1)))
-      return prices.reduce((acc, value) => acc + value)
+      const prices: number[] = this.selectedBooks.map((book: BookI) => Number(book.price.substring(1)))
+      if (prices.length > 0) {
+        return prices.reduce((acc, value) => acc + value)
+      }
+      return 0
     }
   }
 })
