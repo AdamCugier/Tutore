@@ -1,7 +1,6 @@
 import {CartStateI} from "@/types/cart";
 import {ActionContext} from "vuex";
 import {RootStateI} from "@/store";
-import {BooksStateI} from "@/types/book";
 
 export const cart = {
     namespaced: true,
@@ -24,8 +23,11 @@ export const cart = {
         updateCurrencyValue(state: CartStateI, payload: number) {
             state.currency_value = payload
         },
-        toggleLoading(state: BooksStateI) {
+        toggleLoading(state: CartStateI) {
             state.loading = !state.loading
+        },
+        clearCart(state: CartStateI) {
+            state.cart = []
         }
     },
     actions: {

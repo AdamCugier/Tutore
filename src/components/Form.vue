@@ -77,7 +77,7 @@ import Vue from 'vue'
 import {required, email, max, regex} from 'vee-validate/dist/rules'
 import {extend, ValidationObserver, ValidationProvider, setInteractionMode} from 'vee-validate'
 import {FormDataI} from "@/types/summary";
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 setInteractionMode('eager')
 extend('required', {
@@ -127,8 +127,18 @@ export default Vue.extend({
     ...mapState('cart',['currency'])
   },
   methods: {
+    ...mapMutations('clientData',["updateClientData"]),
     submit() {
-      console.log(this.name)
+      this.updateClientData({
+        name: this.name,
+        surname: this.surname,
+        place: this.place,
+        postal_code: this.postal_code,
+        phone: this.phone,
+        email: this.email,
+        price: this.price + this.currency
+      })
+      this.$router.push('/summary/success')
     }
   }
 

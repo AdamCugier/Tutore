@@ -1,4 +1,4 @@
-import {ClientDataStateI} from "@/types/summary";
+import {ClientDataI, ClientDataStateI} from "@/types/summary";
 
 export const clientData = {
     namespaced: true,
@@ -13,7 +13,23 @@ export const clientData = {
             price: '',
         }
     }),
-    mutations: {},
+    mutations: {
+        updateClientData(state: ClientDataStateI, payload: ClientDataI) {
+            state.clientData = payload
+        },
+        clearClientData(state: ClientDataStateI) {
+            state.clientData = {
+                name: '',
+                surname: '',
+                place: '',
+                postal_code: '',
+                phone: '',
+                email: '',
+                price: '',
+
+            }
+        }
+    },
     actions: {},
     getters: {}
 }
