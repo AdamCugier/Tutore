@@ -11,7 +11,7 @@
       <p>{{ $props.data.authors }}</p>
     </div>
     <div class="cart-list-element-price ml-2 ml-sm4 ml-md-6 d-none d-sm-inline-block">
-      <span>{{ Number($props.data.price.substring(1)) * currency_value }}{{ currency }}</span>
+      <span>{{ calculatePrice }}{{ currency }} </span>
     </div>
     <div class="cart-list-element-actions d-flex flex-column align-center d-sm-block ml-2 ml-sm4 ml-md-6 ">
       <div class="cart-list-element-price d-block d-sm-none">
@@ -51,7 +51,10 @@ export default Vue.extend({
     })
   },
   computed: {
-    ...mapState('cart', ["currency", "currency_value"])
+    ...mapState('cart', ["currency", "currency_value"]),
+    calculatePrice() {
+      return Math.floor(Number(this.$props.data.price.substring(1)) * this.currency_value * 100) / 100
+    }
   }
 })
 </script>

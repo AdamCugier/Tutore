@@ -1,5 +1,6 @@
 import {ActionContext} from "vuex";
 import {BookI, BookListI, BooksStateI} from "@/types/book";
+import {RootStateI} from "@/store";
 
 export const books = {
     namespaced: true,
@@ -16,7 +17,7 @@ export const books = {
         }
     },
     actions: {
-        getBooks({commit}: ActionContext<BooksStateI, BooksStateI>) {
+        getBooks({commit}: ActionContext<BooksStateI, RootStateI>) {
             commit('toggleLoading')
             fetch(`${process.env.VUE_APP_BOOK_STORE_URL}/new`)
                 .then(res => res.json())

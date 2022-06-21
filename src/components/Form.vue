@@ -59,7 +59,7 @@
           label="Discount Code"
       ></v-text-field>
       <div class="d-flex justify-space-between align-center">
-        <h3>To pay: {{ price }}</h3>
+        <h3>To pay: {{ price }}{{currency}}</h3>
         <v-btn
             class="blue darken-3 white--text float-end"
             type="submit"
@@ -77,6 +77,7 @@ import Vue from 'vue'
 import {required, email, max, regex} from 'vee-validate/dist/rules'
 import {extend, ValidationObserver, ValidationProvider, setInteractionMode} from 'vee-validate'
 import {FormDataI} from "@/types/summary";
+import {mapState} from "vuex";
 
 setInteractionMode('eager')
 extend('required', {
@@ -122,7 +123,8 @@ export default Vue.extend({
         return Math.floor((this.$props.amount * 0.9) * 100) / 100
       }
       return Math.floor(this.$props.amount * 100) / 100
-    }
+    },
+    ...mapState('cart',['currency'])
   },
   methods: {
     submit() {

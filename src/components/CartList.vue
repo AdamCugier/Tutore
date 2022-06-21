@@ -1,5 +1,11 @@
 <template>
   <div>
+    <v-overlay :value="this.loading">
+      <v-progress-circular
+          indeterminate
+          size="64"
+      ></v-progress-circular>
+    </v-overlay>
     <h1 class="mb-4">Your cart</h1>
     <div v-if="selectedBooks.length > 0">
       <ul class="mb-4">
@@ -26,7 +32,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 import {BookI} from "@/types/book";
 import CartListElement from "@/components/CartListElement.vue";
 
@@ -34,14 +40,27 @@ export default Vue.extend({
   name: "CartList",
   components: {CartListElement},
   data: () => ({
-    selectOptions: ['USD', 'PLN', 'EU'],
+    selectOptions: ['USD', 'PLN', 'EUR'],
     currency: 'USD'
   }),
+  created() {
+    this.currency = this.currency_code
+  },
   computed: {
-    ...mapState('cart', ["cart"]),
+    ...mapState('cart', {cart: "cart", currency_code: "currency", loading: "loading"}),
     ...mapState('books', ["books"]),
     selectedBooks() {
       return this.cart.map((id: string) => this.books.find((book: BookI) => book.isbn13 === id))
+    }
+  },
+  methods: {
+    ...mapActions({
+      changeCurrency: 'cart/getCurrencyConverter'
+    })
+  },
+  watch: {
+    currency(newVal) {
+      this.changeCurrency(newVal)
     }
   }
 })

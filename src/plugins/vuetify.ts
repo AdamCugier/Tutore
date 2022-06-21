@@ -3,9 +3,9 @@ import Vuetify from 'vuetify/lib/framework';
 import '@fortawesome/fontawesome-free/css/all.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBook, faCartShopping, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faCartShopping, faTrash, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faBook, faCartShopping, faTrash)
+library.add(faBook, faCartShopping, faTrash, faCaretDown)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(Vuetify);
 
