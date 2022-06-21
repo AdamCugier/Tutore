@@ -8,13 +8,16 @@
         </li>
       </ul>
       <div class="d-flex justify-end align-center">
-      <router-link to="/summary" class="text-decoration-none">
-        <v-btn
-            color="blue darken-3 white--text"
-        >
-          NEXT
-        </v-btn>
-      </router-link>
+        <div class="d-flex justify-end mr-6">
+          <v-select label="Currency" v-model="currency" :items="selectOptions"/>
+        </div>
+        <router-link to="/summary" class="text-decoration-none">
+          <v-btn
+              color="blue darken-3 white--text"
+          >
+            NEXT
+          </v-btn>
+        </router-link>
       </div>
     </div>
     <p v-else>Your cart is empty :(</p>
@@ -30,6 +33,10 @@ import CartListElement from "@/components/CartListElement.vue";
 export default Vue.extend({
   name: "CartList",
   components: {CartListElement},
+  data: () => ({
+    selectOptions: ['USD', 'PLN', 'EU'],
+    currency: 'USD'
+  }),
   computed: {
     ...mapState('cart', ["cart"]),
     ...mapState('books', ["books"]),

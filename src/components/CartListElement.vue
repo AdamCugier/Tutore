@@ -11,7 +11,7 @@
       <p>{{ $props.data.authors }}</p>
     </div>
     <div class="cart-list-element-price ml-2 ml-sm4 ml-md-6 d-none d-sm-inline-block">
-      <span>{{ $props.data.price }}</span>
+      <span>{{ Number($props.data.price.substring(1)) * currency_value }}{{ currency }}</span>
     </div>
     <div class="cart-list-element-actions d-flex flex-column align-center d-sm-block ml-2 ml-sm4 ml-md-6 ">
       <div class="cart-list-element-price d-block d-sm-none">
@@ -31,7 +31,7 @@
 <script lang="ts">
 import Vue, {PropType} from "vue";
 import {BookI} from "@/types/book";
-import {mapMutations} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default Vue.extend({
   name: "CartListElement",
@@ -49,6 +49,9 @@ export default Vue.extend({
     ...mapMutations({
       removeFromCart: "cart/removeFromCart"
     })
+  },
+  computed: {
+    ...mapState('cart', ["currency", "currency_value"])
   }
 })
 </script>

@@ -65,7 +65,7 @@
             type="submit"
             :disabled="invalid"
         >
-          Submit
+          I ORDER AND PAY
         </v-btn>
       </div>
     </form>
@@ -122,6 +122,11 @@ export default Vue.extend({
         return Math.floor((this.$props.amount * 0.9) * 100) / 100
       }
       return Math.floor(this.$props.amount * 100) / 100
+    }
+  },
+  methods: {
+    submit() {
+      console.log(this.name)
     }
   }
 

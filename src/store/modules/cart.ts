@@ -3,7 +3,9 @@ import {CartStateI} from "@/types/cart";
 export const cart = {
     namespaced: true,
     state: (): CartStateI => ({
-        cart: []
+        cart: [],
+        currency: 'USD',
+        currency_value: 1
     }),
     mutations: {
         addToCart(state: CartStateI, payload: string) {

@@ -36,13 +36,13 @@ export default Vue.extend({
   components: {FormToPlaceOrder, DefaultLayout},
   computed: {
     ...mapGetters('cart', ["getCartItemsCount"]),
-    ...mapState('cart', ["cart"]),
+    ...mapState('cart', ["cart", "currency_value"]),
     ...mapState('books', ["books"]),
     selectedBooks(): BookI[] {
       return this.cart.map((id: string) => this.books.find((book: BookI) => book.isbn13 === id))
     },
     computeValue(): number {
-      const prices: number[] = this.selectedBooks.map((book: BookI) => Number(book.price.substring(1)))
+      const prices: number[] = this.selectedBooks.map((book: BookI) => Number(book.price.substring(1)) * this.currency_value)
       if (prices.length > 0) {
         return prices.reduce((acc, value) => acc + value)
       }
